@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload and Display Image</title>
+    <style>
+        #imagePreview {
+            max-width: 256px;
+            max-height: 256px;
+	    
+        }
+    </style>
+    <style>
+        body {
+            background-color: #DACEFF;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Upload and Display Image</h1>
+
+    <!-- Input field to upload image -->
+    <input type="file" id="imageUpload" accept="image/*">
+
+    <!-- Image preview area -->
+    <div id="imagePreview"></div>
+
+    <!-- JavaScript code to handle image upload and display -->
+    <script>
+        // Function to handle image upload
+        function handleImageUpload(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function (event) {
+                var imagePreview = document.getElementById("imagePreview");
+                imagePreview.innerHTML = "<img src='" + event.target.result + "' alt='Uploaded Image' />";
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        // Add event listener to the image upload input field
+        var imageUpload = document.getElementById("imageUpload");
+        imageUpload.addEventListener("change", handleImageUpload);
+    </script>
+</body>
+</html>
+

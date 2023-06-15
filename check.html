@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UPLOAD VIDEO</title>
+    <style>
+        #videoPreview {
+            max-width: 320px;
+            max-height: 240px;
+        }
+    </style>
+</head>
+<body>
+    <h1>UPLOAD</h1>
+    <style>
+        body {
+            background-color: #DACEFF;
+        }
+    </style>
+
+
+    <!-- Input field to upload video -->
+    <input type="file" id="videoUpload" accept="video/*">
+
+    <!-- Video preview area -->
+    <div id="videoPreview"></div>
+
+    <!-- JavaScript code to handle video upload and display -->
+    <script>
+        // Function to handle video upload
+        function handleVideoUpload(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function (event) {
+                var videoPreview = document.getElementById("videoPreview");
+                videoPreview.innerHTML = "<video controls><source src='" + event.target.result + "' type='" + file.type + "' />Your browser does not support the video tag.</video>";
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        // Add event listener to the video upload input field
+        var videoUpload = document.getElementById("videoUpload");
+        videoUpload.addEventListener("change", handleVideoUpload);
+    </script>
+</body>
+</html>
